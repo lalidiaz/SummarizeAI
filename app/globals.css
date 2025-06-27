@@ -110,6 +110,7 @@
 @layer base {
   * {
     @apply border-border;
+    font-family: var(--font-sans);
   }
 
   h1 {
