@@ -4,7 +4,10 @@ import { useUploadThing } from "@/utils/uploadThing";
 import UploadFormInput from "./upload-form-input";
 import { z } from "zod";
 import { toast } from "react-toastify";
-import { generatePDFSummary } from "@/actions/upload-actions";
+import {
+  generatePDFSummary,
+  storePDFSummaryAction,
+} from "@/actions/upload-actions";
 import { useRef, useState } from "react";
 
 const schema = z.object({
@@ -78,15 +81,31 @@ export default function UploadForm() {
 
       // parse pdf using langchain
       const result = await generatePDFSummary(response);
-      console.log("result", result);
 
       const { data = null, message = null } = result || {};
 
       if (data) {
+        let storeResult: any;
+
         toast.info(`Saving PDF - We are saving your summary ✨`);
-        formRef.current?.reset();
+
         if (data.summary) {
-          // save data to database
+          toast.info(
+            `Processing PDF - Our AI is reading through the document ✨`
+          );
+          // save the summary to the database
+          storeResult = await storePDFSummaryAction({
+            fileUrl: response[0].serverData.file.url,
+            summary: data.summary,
+            title: data.title,
+            fileName: file.name,
+          });
+
+          toast.success(
+            `🔥 Summary generated: Your PDF has been successfully sumarized and saved! ✨`
+          );
+
+          formRef.current?.reset();
         }
       }
       // summarize pdf using ai
