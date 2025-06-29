@@ -1,14 +1,6 @@
 import { FileText } from "lucide-react";
-import { Button } from "../ui/button";
 import NavLink from "./navlink";
-import {
-  ClerkProvider,
-  SignInButton,
-  SignUpButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
-} from "@clerk/nextjs";
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
 export default function Header() {
   return (
