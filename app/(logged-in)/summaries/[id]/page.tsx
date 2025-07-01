@@ -14,13 +14,18 @@ export default async function SummaryPage(props: {
 
   const summary = await getSummaryById(id);
 
-  console.log("summary", summary);
-
   if (!summary) {
     notFound();
   }
 
-  const { title, summary_text, file_name, word_count, created_at } = summary;
+  const {
+    title,
+    summary_text,
+    file_name,
+    word_count,
+    created_at,
+    originalFileUrl,
+  } = summary;
 
   const readingTime = Math.ceil((word_count || 0) / 200);
   return (
@@ -34,7 +39,15 @@ export default async function SummaryPage(props: {
               createdAt={created_at}
               readingTime={readingTime}
             />
-            {file_name && <SourceInfo fileName={file_name} />}
+            {file_name && (
+              <SourceInfo
+                fileName={file_name}
+                title={title}
+                originalFileUrl={originalFileUrl}
+                summaryText={summary_text}
+                createdAt={created_at}
+              />
+            )}
             <div className="relative mt-4 sm:mt-8 lg:mt-16">
               <div
                 className="relative p-4 sm:p-6 lg:p-8
