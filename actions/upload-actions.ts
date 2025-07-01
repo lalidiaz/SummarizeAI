@@ -5,6 +5,7 @@ import { generateSummaryFromGemini } from "@/lib/geminiai";
 import { fetchAndExtractPDFText } from "@/lib/langchain";
 import { formatFileNameAsTitle } from "@/utils/format-utils";
 import { auth } from "@clerk/nextjs/server";
+import { revalidatePath } from "next/cache";
 
 interface PDFSummaryType {
   userId?: string;
@@ -91,20 +92,21 @@ export async function savePDFSummary({
 
   try {
     const sql = await getDbConnection();
-    await sql`INSERT INTO pdf_summaries (
-    user_id,
-    original_file_url,
-    summary_text,
-    title,
-    file_name
-  ) VALUES (
-    ${userId},
-    ${fileUrl},
-    ${summary},
-    ${title},
-    ${fileName}
-
-  );`;
+    const [savedSummary] = await sql`
+    INSERT INTO pdf_summaries (
+      user_id,
+      original_file_url,
+      summary_text,
+      title,
+      file_name
+    ) VALUES (
+      ${userId},
+      ${fileUrl},
+      ${summary},
+      ${title},
+      ${fileName}
+  ) RETURNING id, summary_text`;
+    return savedSummary;
   } catch (error) {
     console.log("Error saving PDF Summary");
     throw error;
@@ -117,11 +119,6 @@ export async function storePDFSummaryAction({
   title,
   fileName,
 }: PDFSummaryType) {
-  // user is logged in and has a user id
-
-  // save pdf summary
-  // savePDFSummary
-
   let savedSummary: any;
   try {
     const { userId } = await auth();
@@ -147,11 +144,6 @@ export async function storePDFSummaryAction({
         message: "Failed to save PDF summary, please try again.",
       };
     }
-
-    return {
-      success: true,
-      message: "PDF summary saved successfully.",
-    };
   } catch (error) {
     return {
       success: false,
@@ -159,4 +151,15 @@ export async function storePDFSummaryAction({
         error instanceof Error ? error.message : "Error saving PDF summary.",
     };
   }
+
+  //Revalidate our cache - tell nextjs there's a new update in the cache
+  revalidatePath(`/summaries/${savedSummary.id}`);
+
+  return {
+    success: true,
+    message: "PDF summary saved successfully.",
+    data: {
+      id: savedSummary.id,
+    },
+  };
 }
