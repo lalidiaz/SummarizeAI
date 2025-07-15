@@ -15,15 +15,7 @@ import { useState, useTransition } from "react";
 import { deleteSummaryAction } from "@/actions/summary-acitons";
 import { toast } from "react-toastify";
 
-interface DeleteButtonProps {
-  summaryId: string;
-}
-
-export default function DeleteButton({
-  summaryId,
-}: {
-  summaryId: DeleteButtonProps;
-}) {
+export default function DeleteButton({ summaryId }: { summaryId: string }) {
   const [open, setOpen] = useState(false);
   const [isPending, startTransition] = useTransition();
 
