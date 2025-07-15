@@ -9,8 +9,8 @@ Built with Next.js 15 App Router, Clerk for Auth, React, OpenAI GPT-4, Langchain
 <img width="1442" height="614" alt="Screenshot 2025-07-15 at 11 33 53 AM" src="https://github.com/user-attachments/assets/b8ad54f7-896e-4ae8-81bc-de12df329320" />
 <img width="1450" height="801" alt="Screenshot 2025-07-15 at 11 34 08 AM" src="https://github.com/user-attachments/assets/95d0b717-329f-4511-a76c-8d76ed1b45c6" />
 <img width="1450" height="800" alt="Screenshot 2025-07-15 at 11 36 57 AM" src="https://github.com/user-attachments/assets/e3e7ecb4-53a5-447d-8c21-f94c88227328" />
-<img width="1447" height="802" alt="Screenshot 2025-07-15 at 11 37 10 AM" src="https://github.com/user-atta<img width="1437" height="800" alt="Screenshot 2025-07-15 at 11 37 23 AM" src="https://github.com/user-attachments/assets/15ef0ae1-0405-4fea-a8ae-ed85d315eff1" />
-chments/assets/f560bd98-112f-43ef-9f10-6c36b0a33669" />
+<img width="1447" height="802" alt="Screenshot 2025-07-15 at 11 37 10 AM" src="https://github.com/user-attachments/assets/f560bd98-112f-43ef-9f10-6c36b0a33669" />
+<img width="1437" height="800" alt="Screenshot 2025-07-15 at 11 37 23 AM" src="https://github.com/user-attachments/assets/15ef0ae1-0405-4fea-a8ae-ed85d315eff1" />
 <img width="1463" height="799" alt="Screenshot 2025-07-15 at 11 38 04 AM" src="https://github.com/user-attachments/assets/a6969c44-becf-4d51-ab8c-5ea47e44bebc" />
 
 
