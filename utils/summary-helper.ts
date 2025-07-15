@@ -52,8 +52,6 @@ export function parseEmojiPoint(content: string) {
 
   const [_, emoji, text] = matches;
 
-  console.log("emoji parseEmojiPoint", emoji);
-  console.log("emtextoji parseEmojiPoint", text);
   return {
     emoji: emoji.trim(),
     text: text.trim(),

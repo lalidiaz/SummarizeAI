@@ -13,22 +13,18 @@ export async function deleteSummaryAction({
     const user = await currentUser();
     const userId = user?.id;
 
-    console.log("---- deleteSummaryAction  user ------", user);
-
     if (!userId) {
       throw new Error("User not found");
     }
 
     const sql = await getDbConnection();
-    console.log("1 sql", sql);
+
     // delete from db
 
     const result = await sql`
     DELETE FROM pdf_summaries
     WHERE id = ${summaryId} AND user_id = ${userId}
     RETURNING id;`;
-
-    console.log("---- deleteSummaryAction result----", result);
 
     // revalidate path
     if (result.length > 0) {

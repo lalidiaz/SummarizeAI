@@ -10,6 +10,8 @@ import {
 } from "@/actions/upload-actions";
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { MotionDiv } from "../common/motion-wrapper";
+import LoadingSkeleton from "./loading-skeleton";
 
 const schema = z.object({
   file: z
@@ -29,17 +31,12 @@ export default function UploadForm() {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
-  const { startUpload, routeConfig } = useUploadThing("pdfUploader", {
-    onClientUploadComplete: () => {
-      console.log("uploaded successfully!");
-    },
+  const { startUpload } = useUploadThing("pdfUploader", {
+    onClientUploadComplete: () => {},
     onUploadError: (err) => {
-      console.log("error occurred while uploading");
       toast.error(`Error ocurred while uploading: ${err.message}`);
     },
-    onUploadBegin: ({ file }) => {
-      console.log("upload has begun for", file);
-    },
+    onUploadBegin: ({ file }) => {},
   });
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -47,12 +44,9 @@ export default function UploadForm() {
 
     try {
       setIsLoading(true);
-      console.log("submitted");
 
       const formData = new FormData(e.currentTarget);
       const file = formData.get("file") as File;
-
-      console.log("file", file);
 
       // validate the fields with zod
       const validatedFields = schema.safeParse({ file });
@@ -72,7 +66,7 @@ export default function UploadForm() {
 
       // upload file to uploadthing
       const response = await startUpload([file]);
-      console.log("Upload response:", response);
+
       if (!response) {
         toast.error(`Something went wrong. Please use a different file.`);
         setIsLoading(false);
@@ -122,12 +116,40 @@ export default function UploadForm() {
   };
 
   return (
-    <div className="flex flex-col gap-8 w-full max-w-2xl mx-auto">
+    <MotionDiv className="flex flex-col gap-8 w-full max-w-2xl mx-auto">
+      <div className="relative">
+        <div className="absolute inset-0 flex items-center" aria-hidden="true">
+          <div className="w-full border-t border-gray-200 dark:border-gray-800" />
+        </div>
+        <div className="relative flex justify-center">
+          <span className="bg-background px-3 text-muted-foreground text-sm">
+            Upload PDF
+          </span>
+        </div>
+      </div>
       <UploadFormInput
         isLoading={isLoading}
         ref={formRef}
         onSubmit={handleSubmit}
       />
-    </div>
+      {isLoading && (
+        <>
+          <div className="relative">
+            <div
+              className="absolute inset-0 flex items-center"
+              aria-hidden="true"
+            >
+              <div className="w-full border-t border-gray-200 dark:border-gray-800" />
+            </div>
+            <div className="relative flex justify-center">
+              <span className="bg-background px-3 text-muted-foreground text-sm">
+                Processing
+              </span>
+            </div>
+          </div>
+          <LoadingSkeleton />
+        </>
+      )}
+    </MotionDiv>
   );
 }

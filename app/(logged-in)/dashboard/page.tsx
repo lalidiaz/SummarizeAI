@@ -1,8 +1,14 @@
 import BgGradient from "@/components/common/bg-gradient";
+import {
+  MotionDiv,
+  MotionH1,
+  MotionP,
+} from "@/components/common/motion-wrapper";
 import EmptySummaryState from "@/components/summaries/empty-summary-state";
 import SummaryCard from "@/components/summaries/summary-card";
 import { Button } from "@/components/ui/button";
 import { getSummaries } from "@/lib/summaries";
+import { itemVariants } from "@/utils/contants";
 import { currentUser } from "@clerk/nextjs/server";
 import { ArrowRight, Plus } from "lucide-react";
 import Link from "next/link";
@@ -20,16 +26,31 @@ export default async function Dashboard() {
   return (
     <main className="min-h-screen">
       <BgGradient className="from-emerald-200 via-teal-200 to-cyan-200" />
-      <div className="container mx-auto flex flex-col gap-4">
+      <MotionDiv
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="container mx-auto flex flex-col gap-4"
+      >
         <div className="px-2 py-12 sm:py-24">
           <div className="flex gap-4 mb-8 justify-between">
             <div className="flex flex-col gap-2">
-              <h1 className="text-4xl font-bold tracking-tight bg-linear-to-r from-gray-600 to-gray-900 bg-clip-text text-transparent">
+              <MotionH1
+                variants={itemVariants}
+                initial="hidden"
+                whileInView="visible"
+                className="text-4xl font-bold tracking-tight bg-linear-to-r from-gray-600 to-gray-900 bg-clip-text text-transparent"
+              >
                 Your Summaries
-              </h1>
-              <p className="text-gray-600">
+              </MotionH1>
+              <MotionP
+                variants={itemVariants}
+                initial="hidden"
+                animate="visible"
+                className="text-gray-600"
+              >
                 Transform your PDFs into concise, actionable insights
-              </p>
+              </MotionP>
             </div>
             <Button
               variant={"link"}
@@ -70,7 +91,7 @@ export default async function Dashboard() {
             )}
           </div>
         </div>
-      </div>
+      </MotionDiv>
     </main>
   );
 }
