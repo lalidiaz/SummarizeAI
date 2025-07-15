@@ -8,7 +8,7 @@ type Step = {
   description: string;
 };
 
-const steps: Step = [
+const steps: Step[] = [
   {
     icon: <Upload size={64} strokeWidth={1.5} />,
     label: "Instant Processing",
