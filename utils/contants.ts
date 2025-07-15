@@ -1,3 +1,5 @@
+import { Variants } from "framer-motion";
+
 export const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -6,11 +8,11 @@ export const containerVariants = {
   },
 };
 
-export const itemVariants = {
+export const itemVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
-    transition: { type: "spring", damping: 15, stiffness: 50, duration: 0.8 },
+    transition: { type: "spring", damping: 15, stiffness: 50 },
   },
 };
 
