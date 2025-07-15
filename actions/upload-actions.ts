@@ -15,29 +15,14 @@ interface PDFSummaryType {
   fileName: string;
 }
 
-export async function generatePDFSummary(
-  uploadResponse: [
-    {
-      serverData: { userId: string; file: { url: string; name: string } };
-    }
-  ]
-) {
-  if (!uploadResponse) {
-    return {
-      success: false,
-      message: "File upload failed",
-      data: null,
-    };
-  }
-
-  const {
-    serverData: {
-      userId,
-      file: { url: pdfUrl, name: fileName },
-    },
-  } = uploadResponse[0];
-
-  if (!pdfUrl) {
+export async function generatePDFSummary({
+  fileName,
+  fileUrl,
+}: {
+  fileUrl: string;
+  fileName: string;
+}) {
+  if (!fileUrl) {
     return {
       success: false,
       message: "File upload failed",
@@ -46,7 +31,7 @@ export async function generatePDFSummary(
   }
 
   try {
-    const pdfText = await fetchAndExtractPDFText(pdfUrl);
+    const pdfText = await fetchAndExtractPDFText(fileUrl);
 
     try {
       const summary = await generateSummaryFromGemini(pdfText);
