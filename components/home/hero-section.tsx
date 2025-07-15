@@ -10,8 +10,9 @@ import {
   MotionSpan,
 } from "../common/motion-wrapper";
 import { containerVariants, itemVariants } from "@/utils/contants";
+import { TargetAndTransition } from "framer-motion";
 
-const buttonVariants = {
+const buttonVariants: TargetAndTransition = {
   scale: 1.05,
   transition: {
     type: "spring",
