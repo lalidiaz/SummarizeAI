@@ -61,7 +61,7 @@ export default function DeleteButton({
         <DialogFooter>
           <Button
             variant="outline"
-            className="bg-gray-50 border border-gray-200 hover:text-gray-600 hover:bg-gray-100 px-8 py-4"
+            className="bg-gray-50 border border-gray-200 hover:text-gray-600 hover:bg-gray-100 px-10 py-4"
             size="icon"
             onClick={() => setOpen(false)}
           >
@@ -69,7 +69,7 @@ export default function DeleteButton({
           </Button>
           <Button
             variant="destructive"
-            className="bg-gray-900 hover:bg-gray-600 px-8 py-4"
+            className="bg-gray-900 hover:bg-gray-600 px-10 py-4"
             size="icon"
             onClick={handleDelete}
           >
