@@ -62,23 +62,25 @@ export default async function Dashboard() {
               </Link>
             </Button>
           </div>
-          <div className="mb-6">
-            <div className="bg-rose-50 border-rose-200 rounded-lg p-4 text-rose-800 flex items-center">
-              <p className="text-sm">
-                😬 You have reached the limit of {uploadLimit} uploads on the
-                Basic plan.{" "}
-              </p>
-              <Link
-                href="/pricing"
-                className="text-rose-800 underline font-medium underline-offset-4 inline-flex items-center"
-              >
-                {" "}
-                Click here to upgrate to PRO{" "}
-                <ArrowRight className="w-4 h-4 inline-block" />
-              </Link>
-              for unlimited uploads.
+          {uploadLimit < summaries.length && (
+            <div className="mb-6">
+              <div className="bg-rose-50 border-rose-200 rounded-lg p-4 text-rose-800 flex items-center">
+                <p className="text-sm">
+                  😬 You have reached the limit of {uploadLimit} uploads on the
+                  Basic plan.{" "}
+                </p>
+                <Link
+                  href="/pricing"
+                  className="text-rose-800 underline font-medium underline-offset-4 inline-flex items-center"
+                >
+                  {" "}
+                  Click here to upgrate to PRO{" "}
+                  <ArrowRight className="w-4 h-4 inline-block" />
+                </Link>
+                for unlimited uploads.
+              </div>
             </div>
-          </div>
+          )}
           <div>
             {summaries.length === 0 ? (
               <EmptySummaryState />
