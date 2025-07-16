@@ -2,7 +2,7 @@
 
 ## SummarizeAI is an intelligent app that quickly summarizes PDF documents using AI.
 
-Built with Next.js 15 App Router, Clerk for Auth, React, Claude AI, Langchain, ShadCN UI components, Tailwind CSS 4, NeonDB, UploadThing, TypeScript and more.
+Built with Next.js 15 App Router, Clerk for Auth, React, Gemini AI, Langchain, ShadCN UI components, Tailwind CSS 4, NeonDB, UploadThing, TypeScript and more.
 
 <img width="1446" height="802" alt="Screenshot 2025-07-15 at 11 33 25 AM" src="https://github.com/user-attachments/assets/a1ce0da9-66d4-4363-8041-b2505a2123c5" />
 <img width="1445" height="793" alt="Screenshot 2025-07-15 at 11 33 39 AM" src="https://github.com/user-attachments/assets/27b18393-0f16-4206-a4c1-c7e231aff03b" />
@@ -19,7 +19,7 @@ Built with Next.js 15 App Router, Clerk for Auth, React, Claude AI, Langchain, S
 - 🔁 Next.js 15 App Router for server-side rendering, routing, and API endpoints with Server Components  
 - ⚛️ React for building interactive user interfaces with reusable components  
 - 🔐 Clerk for secure authentication with Passkeys, Github, and Google Sign-in  
-- 🧠 Claude ai powered summarization with contextual understanding and emoji-enhanced output  
+- 🧠 Gemini AI powered summarization with contextual understanding and emoji-enhanced output  
 - 🧠 Langchain for PDF parsing, text extraction, and document chunking  
 - 🛠️ ShadCN UI for accessible, customizable React components  
 - 🗄️ NeonDB (PostgreSQL) for serverless database storage of summaries and user data  
@@ -46,7 +46,7 @@ Built with Next.js 15 App Router, Clerk for Auth, React, Claude AI, Langchain, S
 1. Fork the repo
 2. Copy the .env.example variables into a separate .env.local file
 3. Create the required credentials:
-- ClaudeAI API key
+- Gemini AI API key
 - Clerk authentication
 - UploadThing configuration
 - NeonDB database connection
