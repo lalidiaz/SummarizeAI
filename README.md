@@ -2,7 +2,7 @@
 
 ## SummarizeAI is an intelligent app that quickly summarizes PDF documents using AI.
 
-Built with Next.js 15 App Router, Clerk for Auth, React, OpenAI GPT-4, Langchain, ShadCN UI components, Tailwind CSS 4, NeonDB, UploadThing, Stripe for payments, TypeScript, TailwindCSS and more.
+Built with Next.js 15 App Router, Clerk for Auth, React, Claude AI, Langchain, ShadCN UI components, Tailwind CSS 4, NeonDB, UploadThing, TypeScript and more.
 
 <img width="1446" height="802" alt="Screenshot 2025-07-15 at 11 33 25 AM" src="https://github.com/user-attachments/assets/a1ce0da9-66d4-4363-8041-b2505a2123c5" />
 <img width="1445" height="793" alt="Screenshot 2025-07-15 at 11 33 39 AM" src="https://github.com/user-attachments/assets/27b18393-0f16-4206-a4c1-c7e231aff03b" />
